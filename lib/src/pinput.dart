@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math';
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
@@ -161,7 +162,7 @@ class Pinput extends StatefulWidget {
   final String smsCodeMatcher;
 
   /// Fires when user completes pin input
-  final ValueChanged<String>? onCompleted;
+  final PinputCompleteCallback? onCompleted;
 
   /// Called every time input value changes.
   final ValueChanged<String>? onChanged;
@@ -457,7 +458,7 @@ class Pinput extends StatefulWidget {
       ),
     );
     properties.add(
-      DiagnosticsProperty<ValueChanged<String>?>(
+      DiagnosticsProperty<PinputCompleteCallback?>(
         'onCompleted',
         onCompleted,
         defaultValue: null,
@@ -732,3 +733,8 @@ class Pinput extends StatefulWidget {
     );
   }
 }
+
+typedef PinputCompleteCallback = FutureOr<void> Function(
+  String value,
+  bool autofilled,
+);

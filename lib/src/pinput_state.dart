@@ -32,6 +32,7 @@ class _PinputState extends State<Pinput>
   RestorableTextEditingController? _controller;
   FocusNode? _focusNode;
   bool _isHovering = false;
+  bool _autofill = false;
   String? _validatorErrorText;
   SmartAuth? _smartAuth;
 
@@ -120,6 +121,7 @@ class _PinputState extends State<Pinput>
       senderPhoneNumber: widget.senderPhoneNumber,
     );
     if (res.succeed && res.codeFound && res.code!.length == widget.length) {
+      _autofill = true;
       _effectiveController.setText(res.code!);
     }
     // Listen for multiple sms codes
@@ -140,7 +142,8 @@ class _PinputState extends State<Pinput>
   void _onChanged(String pin) {
     widget.onChanged?.call(pin);
     if (_completed) {
-      widget.onCompleted?.call(pin);
+      widget.onCompleted?.call(pin, _autofill);
+      _autofill = false;
       _maybeValidateForm();
       _maybeCloseKeyboard();
     }
