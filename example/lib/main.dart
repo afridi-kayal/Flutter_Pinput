@@ -77,8 +77,7 @@ class _PinputExampleState extends State<PinputExample> {
             child: Pinput(
               controller: pinController,
               focusNode: focusNode,
-              androidSmsAutofillMethod:
-                  AndroidSmsAutofillMethod.smsUserConsentApi,
+              androidSmsAutofillMethod: AndroidSmsAutofillMethod.smsUserConsentApi,
               listenForMultipleSmsOnAndroid: true,
               defaultPinTheme: defaultPinTheme,
               separatorBuilder: (index) => const SizedBox(width: 8),
@@ -90,7 +89,7 @@ class _PinputExampleState extends State<PinputExample> {
               //   pinController.setText(value);
               // },
               hapticFeedbackType: HapticFeedbackType.lightImpact,
-              onCompleted: (pin) {
+              onCompleted: (pin, _) {
                 debugPrint('onCompleted: $pin');
               },
               onChanged: (value) {

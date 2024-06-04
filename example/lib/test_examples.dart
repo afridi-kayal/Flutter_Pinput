@@ -59,7 +59,7 @@ class ErrorStateExample extends StatefulWidget {
 class _ErrorStateExampleState extends State<ErrorStateExample> {
   bool _hasError = false;
 
-  Future<void> _validate(String value) async {
+  Future<void> _validate(String value, bool _) async {
     await Future.delayed(const Duration(seconds: 2));
     setState(() => _hasError = value == '1111');
   }
