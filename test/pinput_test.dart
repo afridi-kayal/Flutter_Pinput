@@ -94,8 +94,7 @@ void main() {
     testState(0, disabledTheme);
   });
 
-  testWidgets('Should properly handle focused state',
-      (WidgetTester tester) async {
+  testWidgets('Should properly handle focused state', (WidgetTester tester) async {
     final focusNode = FocusNode();
     const defaultTheme = PinTheme(decoration: BoxDecoration());
     final focusedTheme = defaultTheme.copyDecorationWith(color: Colors.red);
@@ -116,8 +115,7 @@ void main() {
 
     expect(
       find.byWidgetPredicate(
-        (w) =>
-            w is AnimatedContainer && w.decoration == focusedTheme.decoration,
+        (w) => w is AnimatedContainer && w.decoration == focusedTheme.decoration,
       ),
       findsOneWidget,
     );
@@ -136,8 +134,7 @@ void main() {
   });
 
   group('onChanged should work properly', () {
-    testWidgets('onChanged should work with controller',
-        (WidgetTester tester) async {
+    testWidgets('onChanged should work with controller', (WidgetTester tester) async {
       String? fieldValue;
       int called = 0;
 
@@ -168,8 +165,7 @@ void main() {
       expect(called, 2);
     });
 
-    testWidgets('onChanged should work with controller',
-        (WidgetTester tester) async {
+    testWidgets('onChanged should work with controller', (WidgetTester tester) async {
       String? fieldValue;
       int called = 0;
       final TextEditingController controller = TextEditingController();
@@ -206,15 +202,14 @@ void main() {
   });
 
   group('onCompleted should work properly', () {
-    testWidgets('onCompleted works without controller',
-        (WidgetTester tester) async {
+    testWidgets('onCompleted works without controller', (WidgetTester tester) async {
       String? fieldValue;
       int called = 0;
 
       await tester.pumpApp(
         Pinput(
           length: 4,
-          onCompleted: (value) {
+          onCompleted: (value, _) {
             fieldValue = value;
             called++;
           },
@@ -242,7 +237,7 @@ void main() {
       await tester.pumpApp(
         Pinput(
           controller: controller,
-          onCompleted: (value) {
+          onCompleted: (value, _) {
             fieldValue = value;
             called++;
           },
@@ -291,8 +286,7 @@ void main() {
     expect(tapCount, 3);
   });
 
-  testWidgets('onTap is not called, field is disabled',
-      (WidgetTester tester) async {
+  testWidgets('onTap is not called, field is disabled', (WidgetTester tester) async {
     int tapCount = 0;
 
     await tester.pumpApp(

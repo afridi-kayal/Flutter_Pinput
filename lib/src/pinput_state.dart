@@ -437,13 +437,13 @@ class _PinputState extends State<Pinput>
     );
   }
 
-  MouseCursor get _effectiveMouseCursor => MaterialStateProperty.resolveAs<MouseCursor>(
-        widget.mouseCursor ?? MaterialStateMouseCursor.textable,
-        <MaterialState>{
-          if (!isEnabled) MaterialState.disabled,
-          if (_isHovering) MaterialState.hovered,
-          if (effectiveFocusNode.hasFocus) MaterialState.focused,
-          if (hasError) MaterialState.error,
+  MouseCursor get _effectiveMouseCursor => WidgetStateProperty.resolveAs<MouseCursor>(
+        widget.mouseCursor ?? WidgetStateMouseCursor.textable,
+        <WidgetState>{
+          if (!isEnabled) WidgetState.disabled,
+          if (_isHovering) WidgetState.hovered,
+          if (effectiveFocusNode.hasFocus) WidgetState.focused,
+          if (hasError) WidgetState.error,
         },
       );
 
